@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Poppins" rel="stylesheet" type="text/css"/>
+    <style>
+        body {
+            text-align: center;
+            background: linear-gradient(to bottom, #99d6ff, #1e8ad2);
+            font-family: 'Lucida Console', 'Courier New', monospace;
+            font:inherit;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .hidden {
+            display: none;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+        #message {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2em;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.253);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        #click-btn {
+            font-size: 1.5em;
+            font-family: 'Lucida Console', 'Courier New', monospace;
+            background: #2289ff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+        #click-btn:hover {
+            background-color: #0b73b8;
+            transform: scale(1.1);
+        }
+        .balloon {
+            width: 50px;
+            height: 70px;
+            position: absolute;
+            bottom: -100px;
+            animation: floatUp 6s linear forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+        }
+        @media (max-width: 600px) {
+            #message {
+                font-size: 1.5em;
+                padding: 15px;
+            }
+            #click-btn {
+                font-size: 1.2em;
+                padding: 10px 20px;
+            }
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white;">🎈 *.☆:* For You!! *:☆.* 🎈</h1>
+    <button id="click-btn">CLICK HERE!!</button>
+    <div id="message" class="hidden">🎉 Happy Birthday! Sweet Seventeen! 🎂<br>Hope your special day is as incredible as you are!!</div>
+    
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="Aud1.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Confetti -->
+    <canvas id="confetti"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2"></script>
+
+    <script>
+        document.getElementById("click-btn").addEventListener("click", function() {
+            let message = document.getElementById("message");
+            message.classList.remove("hidden");
+            message.classList.add("fade-in");
+
+            this.style.display = "none";
+
+            let music = document.getElementById("bg-music");
+            music.play().catch(error => console.log("Autoplay tidak diperbolehkan:", error));
+
+            setInterval(createBalloon, 500);
+
+            startConfetti();
+        });
+
+        function createBalloon() {
+            let balloon = document.createElement("img");
+            balloon.src = "icon.svg";
+            balloon.classList.add("balloon");
+
+            let randomLeft = Math.random() * 90 + "%";
+            balloon.style.left = randomLeft;
+            document.body.appendChild(balloon);
+
+            setTimeout(() => balloon.remove(), 6000);
+        }
+
+        function startConfetti() {
+            var duration = 5 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    spread: 160,
+                    origin: { y: 0.6 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+    </script>
+</body>
+</html>

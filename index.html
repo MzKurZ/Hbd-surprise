@@ -27,7 +27,7 @@
         }
         #message {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.1em;
+            font-size: 2em;
             color: #fff;
             background: rgba(0, 0, 0, 0.253);
             padding: 20px;
@@ -36,7 +36,7 @@
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
         #click-btn {
-            font-size: 1.4em;
+            font-size: 1.5em;
             font-family: 'Lucida Console', 'Courier New', monospace;
             background: #2289ff;
             color: white;
@@ -50,6 +50,12 @@
         #click-btn:hover {
             background-color: #0b73b8;
             transform: scale(1.1);
+        }
+        .img1{
+            border: #99d6ff 3px solid;
+            border-radius: 4px;
+            width: 150px;
+            height: 200px;
         }
         .balloon {
             width: 50px;
@@ -67,7 +73,7 @@
         }
         @media (max-width: 600px) {
             #message {
-                font-size: 1.4em;
+                font-size: 1.5em;
                 padding: 15px;
             }
             #click-btn {
@@ -86,9 +92,10 @@
     </style>
 </head>
 <body>
-    <h2 style="color: white;">🎈 *.☆:* For You!! *:☆.* 🎈</h2>
+    <h1 style="color: white;">🎈 *.☆:* For You!! *:☆.* 🎈</h1>
     <button id="click-btn">CLICK HERE!!</button>
-    <div id="message" class="hidden">🎉 Happy Birthday! Sweet Seventeen! 🎂<br>Hope your special day is as incredible as you are!!</div>
+    <div id="message" class="hidden">🎉 Happy Birthday! Sweet Seventeen! 🎂<br>Hope your special day is as incredible as you are!!<br>
+    <img class="img1" src="pic1.jpeg" alt="picture1"></div>
     
     <!-- Background Music -->
     <audio id="bg-music" loop>
